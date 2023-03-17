@@ -42,9 +42,9 @@ namespace Builder_Pattern
 
     public interface  IFurnitureInventoryBuilder
     {
-        void AddTitle();
-        void AddDimesnsions();
-        void AddLogistics(DateTime dateTime);
+        IFurnitureInventoryBuilder AddTitle();
+        IFurnitureInventoryBuilder AddDimesnsions();
+        IFurnitureInventoryBuilder AddLogistics(DateTime dateTime);
         InventoryReport GetDailyReport();
     }
 
@@ -65,21 +65,24 @@ namespace Builder_Pattern
             _inventoryReport = new InventoryReport();
         }
 
-        public void AddDimesnsions()
+        public IFurnitureInventoryBuilder AddDimesnsions()
         {
             _inventoryReport.DimesnsionsSection = string.Join(Environment.NewLine,_items.Select(product=> 
             $"Product: {product.Name} \n Price: {product.Price} \n" +
             $"Height: {product.Height} \n Width: {product.Width} -> Weight: {product.Weight} lbs"));
+            return this;
         }
 
-        public void AddLogistics(DateTime dateTime)
+        public IFurnitureInventoryBuilder AddLogistics(DateTime dateTime)
         {
-            _inventoryReport.LogisticsSection = "Report generated on {dateTime}";
+            _inventoryReport.LogisticsSection = $"Report generated on {dateTime}";
+            return this;
         }
 
-        public void AddTitle()
+        public IFurnitureInventoryBuilder AddTitle()
         {
             _inventoryReport.TitleSection="-----------Daily Inventory Report--------\n\n";
+            return this;
         }
 
         public InventoryReport GetDailyReport()

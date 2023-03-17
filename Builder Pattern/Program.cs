@@ -18,10 +18,16 @@ namespace Builder_Pattern
 
             };
             var inventoryBuilder = new DailyReportBuilder(items);
-            var director = new InventoryBuildDirector(inventoryBuilder);
-            director.BuildCompleteReport();
-            var directReport = inventoryBuilder.GetDailyReport();
-            Console.WriteLine(directReport.Debug());
+            //var director = new InventoryBuildDirector(inventoryBuilder);
+            //director.BuildCompleteReport();
+            //var directReport = inventoryBuilder.GetDailyReport();
+            //Console.WriteLine(directReport.Debug());
+            var fuentReport = inventoryBuilder
+                .AddTitle()
+                .AddDimesnsions()
+                .AddLogistics(DateTime.Now)
+                .GetDailyReport();
+            Console.WriteLine(fuentReport.Debug());
             Console.ReadLine();
         }
     }
