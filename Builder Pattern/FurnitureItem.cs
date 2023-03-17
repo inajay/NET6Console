@@ -40,6 +40,9 @@ namespace Builder_Pattern
 
     }
 
+    /// <summary>
+    /// IFurnitureInventoryBuilder interface
+    /// </summary>
     public interface  IFurnitureInventoryBuilder
     {
         IFurnitureInventoryBuilder AddTitle();
